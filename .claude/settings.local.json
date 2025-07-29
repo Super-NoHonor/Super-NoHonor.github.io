@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:bluesky333.github.io)",
+      "WebFetch(domain:chaoyi-wu.github.io)"
+    ],
+    "deny": []
+  }
+}
