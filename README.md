@@ -49,7 +49,7 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 
 ## 🎓 Education
 
-- **UCLA CVIB AI Internship** (March 2025 - May 2025)
+- **UCLA CVIB AI Internship** (March 2025 - Current)
 - **Bachelor of Mechanical Engineering** - Konkuk University (2009-2016)
 
 ## 🛠️ Technical Stack
