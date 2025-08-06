@@ -183,6 +183,19 @@ body {
     transform: translateY(-2px);
 }
 
+.hero-info {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-info p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
 /* Section Styles */
 .section-title {
     font-size: 2.5rem;
@@ -430,7 +443,7 @@ body {
 
 /* Contact Section */
 .contact {
-    padding: 6rem 0;
+    padding: 3rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
@@ -450,9 +463,9 @@ body {
 }
 
 .contact-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
     color: #e2e8f0;
 }
 
@@ -485,7 +498,7 @@ body {
     background: #1e293b;
     color: #94a3b8;
     text-align: center;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
 }
 
 /* Responsive Design */
@@ -512,17 +525,26 @@ body {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .profile-section {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 1.5rem;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero {
+        min-height: 70vh;
     }
 
     .about-content {
