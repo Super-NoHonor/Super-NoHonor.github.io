@@ -350,7 +350,7 @@ body {
 
 /* Experience Section */
 .experience {
-    padding: 6rem 0;
+    padding: 3rem 0;
     background: #f8fafc;
 }
 
@@ -418,6 +418,13 @@ body {
 .job-description li {
     margin-bottom: 0.5rem;
     color: #475569;
+}
+
+.job-summary {
+    margin: 1rem 0;
+    color: #475569;
+    font-style: italic;
+    line-height: 1.6;
 }
 
 .project-highlights {
