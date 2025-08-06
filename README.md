@@ -33,6 +33,12 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 - **Description**: SAM-Adapter approach for rib segmentation in chest X-rays
 - **Performance**: F1 scores of 0.847 (ViT-H) and 0.826 (ViT-B)
 
+### TRACE: VLM Spatial Reasoning
+- **Technology**: Vision-Language Models, Textual Chain of Reasoning, Robotics
+- **Description**: Advanced VLM system with textual CoR for robotic spatial affordance prediction
+- **Achievement**: State-of-the-art 55.0% accuracy on Where2Place(h) benchmark, 9.6% relative improvement
+- **Status**: ICCV 2025 Submission
+
 ## 💼 Professional Experience
 
 ### ABB KOREA (2017-2019)
@@ -54,10 +60,11 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 
 ## 🛠️ Technical Stack
 
-- **AI/ML**: PyTorch, OpenCV, YOLO, SAM, Transformer Models
+- **AI/ML**: PyTorch, OpenCV, YOLO, SAM, Transformer Models, Vision-Language Models
 - **Programming**: Python, JavaScript, HTML/CSS
-- **Robotics**: Industrial Automation, ABB Robotics, Real-time Control
+- **Robotics**: Industrial Automation, ABB Robotics, Real-time Control, Spatial Affordance Prediction
 - **Medical Imaging**: DICOM, Medical AI, Image Segmentation
+- **Research**: Chain of Reasoning, Multimodal AI, Computer Vision
 
 ## 📁 Repository Structure
 
@@ -69,6 +76,8 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 ├── multi-agent-ai.svg  # Project illustration
 ├── robot-detection.svg # Project illustration
 ├── medical-segmentation.svg # Project illustration
+├── vlm-reasoning.svg   # TRACE VLM project illustration
+├── TRACE_arxiv.pdf     # TRACE research paper (ICCV 2025)
 └── README.md           # This file
 ```
 
