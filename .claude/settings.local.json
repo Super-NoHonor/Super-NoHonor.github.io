@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:bluesky333.github.io)",
-      "WebFetch(domain:chaoyi-wu.github.io)"
+      "WebFetch(domain:chaoyi-wu.github.io)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:super-nohonor.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
