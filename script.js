@@ -141,6 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const closeBtn = document.querySelector('.modal-close');
+    
+    // Debug: Check if modal elements exist
+    console.log('Modal elements check:');
+    console.log('Modal:', modal);
+    console.log('Modal Image:', modalImg);
+    console.log('Close Button:', closeBtn);
+    
+    if (!modal || !modalImg) {
+        console.error('Modal elements not found!');
+        return;
+    }
 
     // Modal open function
     function openModal(event) {
@@ -176,30 +187,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to add modal functionality to images
     function addModalToImages() {
-        // Handle regular research images (not in sliders)
-        const regularImages = document.querySelectorAll('.research-img:not(.image-slider .research-img)');
+        // Simple approach - add listeners to ALL research images
+        const allImages = document.querySelectorAll('.research-img');
         
-        regularImages.forEach(img => {
+        allImages.forEach(img => {
             if (!img.dataset.modalReady) {
-                img.addEventListener('click', openModal);
+                img.addEventListener('click', function(event) {
+                    console.log('Image clicked:', this.src);
+                    
+                    // For slider images, check if this image is in active slide
+                    const slide = this.closest('.slide');
+                    if (slide) {
+                        if (!slide.classList.contains('active')) {
+                            console.log('Clicked image is not in active slide, ignoring');
+                            return;
+                        }
+                    }
+                    
+                    // Call modal open function
+                    openModal.call(this, event);
+                });
                 img.style.cursor = 'pointer';
                 img.dataset.modalReady = 'true';
-            }
-        });
-        
-        // Handle slider images differently - only active ones
-        const sliders = document.querySelectorAll('.image-slider');
-        sliders.forEach(slider => {
-            // Add event delegation to the slider container
-            if (!slider.dataset.modalReady) {
-                slider.addEventListener('click', function(event) {
-                    // Only handle clicks on images in active slides
-                    if (event.target.matches('img.research-img') && 
-                        event.target.closest('.slide.active')) {
-                        openModal.call(event.target, event);
-                    }
-                });
-                slider.dataset.modalReady = 'true';
             }
         });
     }
@@ -219,11 +228,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Re-initialize when new images are loaded (for dynamic content)
     const observer = new MutationObserver(function(mutations) {
+        let shouldReinit = false;
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length) {
-                addModalToImages();
+                // Check if any added nodes contain research images
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.matches && node.matches('.research-img') ||
+                            node.querySelector && node.querySelector('.research-img')) {
+                            shouldReinit = true;
+                        }
+                    }
+                });
             }
         });
+        
+        if (shouldReinit) {
+            console.log('New research images detected, reinitializing modal listeners');
+            addModalToImages();
+        }
     });
 
     observer.observe(document.body, {
