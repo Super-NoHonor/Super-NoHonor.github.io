@@ -267,32 +267,77 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to add project gallery functionality to images
     function addProjectGalleryToImages() {
         const allImages = document.querySelectorAll('.research-img');
+        const sliders = document.querySelectorAll('.image-slider');
+        const visuals = document.querySelectorAll('.research-visual');
         
-        allImages.forEach(img => {
+        console.log('Found', allImages.length, 'images,', sliders.length, 'sliders,', visuals.length, 'visuals');
+        
+        // Add click listeners to images
+        allImages.forEach((img, index) => {
             if (!img.dataset.galleryReady) {
-                img.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    
-                    console.log('Image clicked:', this.src);
-                    
-                    // For slider images, check if this image is in active slide
-                    const slide = this.closest('.slide');
-                    if (slide && !slide.classList.contains('active')) {
-                        console.log('Clicked image is not in active slide, ignoring');
-                        return;
-                    }
-                    
-                    // Determine which project this image belongs to
-                    const projectKey = getProjectKeyFromImagePath(this.src);
-                    console.log('Determined project:', projectKey);
-                    
-                    if (projectKey) {
-                        openProjectGallery(projectKey, this.src);
-                    }
+                // Add multiple event listeners for reliability
+                ['click', 'mousedown'].forEach(eventType => {
+                    img.addEventListener(eventType, function(event) {
+                        if (eventType === 'mousedown') return; // Only process click
+                        
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        console.log('=== IMAGE CLICKED ===');
+                        console.log('Image index:', index);
+                        console.log('Image src:', this.src);
+                        console.log('Window size:', window.innerWidth + 'x' + window.innerHeight);
+                        
+                        // For slider images, check if this image is in active slide
+                        const slide = this.closest('.slide');
+                        if (slide && !slide.classList.contains('active')) {
+                            console.log('Clicked image is not in active slide, ignoring');
+                            return;
+                        }
+                        
+                        // Determine which project this image belongs to
+                        const projectKey = getProjectKeyFromImagePath(this.src);
+                        console.log('Determined project:', projectKey);
+                        
+                        if (projectKey) {
+                            openProjectGallery(projectKey, this.src);
+                        } else {
+                            console.error('Could not determine project for image:', this.src);
+                        }
+                    }, { passive: false });
                 });
+                
                 img.style.cursor = 'pointer';
+                img.style.zIndex = '80';
+                img.style.position = 'relative';
                 img.dataset.galleryReady = 'true';
+            }
+        });
+        
+        // Also add click listeners to visual containers for extra reliability
+        visuals.forEach((visual, index) => {
+            if (!visual.dataset.galleryReady) {
+                visual.addEventListener('click', function(event) {
+                    console.log('=== VISUAL CONTAINER CLICKED ===');
+                    console.log('Visual index:', index);
+                    
+                    // Find the active image in this visual
+                    const activeImage = this.querySelector('.slide.active img') || this.querySelector('.research-img');
+                    if (activeImage) {
+                        console.log('Found active image:', activeImage.src);
+                        const projectKey = getProjectKeyFromImagePath(activeImage.src);
+                        if (projectKey) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            openProjectGallery(projectKey, activeImage.src);
+                        }
+                    }
+                }, { passive: false });
+                
+                visual.style.cursor = 'pointer';
+                visual.style.zIndex = '100';
+                visual.style.position = 'relative';
+                visual.dataset.galleryReady = 'true';
             }
         });
     }

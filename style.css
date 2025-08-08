@@ -245,13 +245,14 @@ a:hover {
 .research-img {
   width: 100% !important;
   height: 350px !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   border-radius: 6px !important;
   border: 1px solid #d0d7de !important;
   cursor: pointer !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
   position: relative !important;
-  z-index: 2 !important;
+  z-index: 80 !important;
+  background: #f8f9fa !important;
 }
 .research-img:hover {
   transform: scale(1.05);
@@ -756,25 +757,68 @@ a:hover {
   color: #0366d6;
 }
 
+/* Force clicks to work on ALL screens - especially large ones */
+.research-visual,
+.research-visual *,
+.image-slider,
+.image-slider *,
+.research-img {
+  position: relative !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.research-visual {
+  z-index: 100 !important;
+}
+
+.image-slider {
+  z-index: 90 !important;
+}
+
+.research-img {
+  z-index: 80 !important;
+}
+
 /* Ensure clicks work on large screens */
 @media (min-width: 769px) {
   .research-visual {
     position: relative !important;
-    z-index: 15 !important;
+    z-index: 100 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
+    display: block !important;
   }
   
   .research-img {
     position: relative !important;
-    z-index: 3 !important;
+    z-index: 80 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
+    display: block !important;
   }
   
   .image-slider {
     position: relative !important;
-    z-index: 8 !important;
+    z-index: 90 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    display: block !important;
+  }
+  
+  .slide {
+    position: relative !important;
+    z-index: 75 !important;
+    pointer-events: auto !important;
+  }
+  
+  .slide.active {
+    z-index: 85 !important;
+    pointer-events: auto !important;
+  }
+  
+  .slide.active img {
+    z-index: 85 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
   }
@@ -786,7 +830,7 @@ a:hover {
   
   .research-content {
     position: relative !important;
-    z-index: 1 !important;
+    z-index: 5 !important;
     pointer-events: none !important;
   }
   
@@ -832,22 +876,24 @@ a:hover {
   .research-visual {
     width: 100% !important;
     position: relative !important;
-    z-index: 15 !important;
+    z-index: 100 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
   }
 
   .research-img {
-    height: 120px !important;
+    height: 200px !important;
+    width: 100% !important;
+    object-fit: contain !important;
     position: relative !important;
-    z-index: 3 !important;
+    z-index: 80 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
   }
   
   /* Mobile slider adjustments */
   .image-slider {
-    height: 250px;
+    height: 200px !important;
   }
   
   .slider-btn {
