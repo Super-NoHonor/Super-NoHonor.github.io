@@ -41,11 +41,14 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 
 ## 💼 Professional Experience
 
-### ABB KOREA (2017-2019)
-**Project Engineer - Industrial Robotics & Automation**
+### ABB KOREA (Nov 2017 - Present)
+**Robot Engineer - Industrial Robotics & Automation**
+- Robot AI Researcher - Advanced AI research and development
+- Robot Engineer - Robot Tool Image Detection AI project development  
+- Training & Education - Robot programming and collaborative robot training
 - Led industrial robot programming and integration projects
-- Implemented collaborative robot solutions for major manufacturers
-- Developed automated systems for LG Display, Samsung R&D, and Kia Motors
+- Implemented collaborative robot solutions for major manufacturers (Samsung R&D, LG Display, KIA Motors)
+- Developed automated systems for manufacturing processes and quality control
 
 ### Hyundai Rotem (2016)
 **Research Engineer - Vehicle Dynamics Analysis**
@@ -55,8 +58,8 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 
 ## 🎓 Education
 
-- **UCLA CVIB AI Internship** (March 2025 - Current)
-- **Bachelor of Mechanical Engineering** - Konkuk University (2009-2016)
+- **UCLA CVIB AI Internship** (Mar 2025 - Present) - Advanced AI research focusing on medical imaging analysis and computer vision applications
+- **Bachelor of Mechanical Engineering** - Konkuk University (2009-2016) - Seoul, South Korea
 
 ## 🛠️ Technical Stack
 
@@ -69,16 +72,19 @@ Currently pursuing advanced AI research through the UCLA CVIB AI Internship prog
 ## 📁 Repository Structure
 
 ```
-├── index.html          # Main website page
-├── style.css           # Styling and responsive design
-├── script.js           # Interactive features and animations
-├── profile.svg         # Profile image
-├── multi-agent-ai.svg  # Project illustration
-├── robot-detection.svg # Project illustration
-├── medical-segmentation.svg # Project illustration
-├── vlm-reasoning.svg   # TRACE VLM project illustration
-├── TRACE_arxiv.pdf     # TRACE research paper (ICCV 2025)
-└── README.md           # This file
+├── index.html              # Main website page
+├── style.css               # Styling and responsive design
+├── script.js               # Interactive features and animations
+├── assets/
+│   └── imges/
+│       ├── profile.svg     # Profile image
+│       ├── TRACE.png       # TRACE VLM project image
+│       ├── Agentic_AI.png  # Multi-agent AI system image
+│       ├── RobotTool_Detection.jpg # Robot tool detection project image
+│       ├── Medical_segmentaion.jpg # Medical segmentation project image
+│       └── ...             # Other project images
+├── TRACE_arxiv.pdf         # TRACE research paper (ICCV 2025)
+└── README.md               # This file
 ```
 
 ## 🌐 Website Features
@@ -137,4 +143,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ⭐ If you find this website useful, please consider giving it a star!
 
-**Last Updated**: January 2025
+**Last Updated**: August 2025
