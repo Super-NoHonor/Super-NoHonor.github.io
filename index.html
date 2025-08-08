@@ -80,7 +80,42 @@
 
                 <div class="research-item">
                     <div class="research-visual">
-                        <img src="assets/imges/TRACE.png" alt="TRACE VLM System" class="research-img">
+                        <div class="image-slider">
+                            <div class="slider-container">
+                                <div class="slide active">
+                                    <img src="assets/images/TRACE/TRACE_Main.png" alt="TRACE Main" class="research-img">
+                                </div>
+                                <div class="slide">
+                                    <img src="assets/images/TRACE/TRACE_01.png" alt="TRACE 01 Img" class="research-img">
+                                </div>
+                                <div class="slide">
+                                    <img src="assets/images/TRACE/TRACE_02.png" alt="TRACE 02 Img" class="research-img">
+                                </div>
+                                <div class="slide">
+                                    <img src="assets/images/TRACE/TRACE_03.png" alt="TRACE 03 Img" class="research-img">
+                                </div>
+                                <div class="slide">
+                                    <img src="assets/images/TRACE/TRACE_04.png" alt="TRACE 04 Img" class="research-img">
+                                </div>
+                                <div class="slide">
+                                    <img src="assets/images/TRACE/TRACE_05.png" alt="TRACE 05 Img" class="research-img">
+                                </div>
+                            </div>
+                            <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slider-btn next-btn" onclick="changeSlide(this, 1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slider-indicators">
+                                <span class="indicator active" onclick="currentSlide(this, 1)"></span>
+                                <span class="indicator" onclick="currentSlide(this, 2)"></span>
+                                <span class="indicator" onclick="currentSlide(this, 3)"></span>
+                                <span class="indicator" onclick="currentSlide(this, 4)"></span>
+                                <span class="indicator" onclick="currentSlide(this, 5)"></span>
+                                <span class="indicator" onclick="currentSlide(this, 6)"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="research-content">
                         <h3>TRACE: VLM Spatial Reasoning</h3>

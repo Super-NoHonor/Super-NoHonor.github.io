@@ -141,33 +141,143 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const closeBtn = document.querySelector('.modal-close');
-    const researchImages = document.querySelectorAll('.research-img');
 
-    // Add click event to all research images
-    researchImages.forEach(img => {
-        img.addEventListener('click', function() {
-            modal.style.display = 'block';
-            modalImg.src = this.src;
-            modalImg.alt = this.alt;
+    // Function to add modal functionality to images
+    function addModalToImages() {
+        const researchImages = document.querySelectorAll('.research-img');
+        
+        researchImages.forEach(img => {
+            // Remove existing event listeners to prevent duplicates
+            img.removeEventListener('click', openModal);
+            // Add click event to open modal
+            img.addEventListener('click', openModal);
+            // Add hover cursor
+            img.style.cursor = 'pointer';
+        });
+    }
+
+    // Modal open function
+    function openModal(event) {
+        event.stopPropagation(); // Prevent slider controls from interfering
+        modal.style.display = 'block';
+        modalImg.src = this.src;
+        modalImg.alt = this.alt;
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    }
+
+    // Modal close function
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Initialize modal for existing images
+    addModalToImages();
+
+    // Re-initialize when new images are loaded (for dynamic content)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                addModalToImages();
+            }
         });
     });
 
-    // Close modal when clicking the X button
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
+
+    // Close modal when clicking the X button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
 
     // Close modal when clicking outside the image
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
-            modal.style.display = 'none';
+            closeModal();
         }
     });
 
     // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
+            closeModal();
         }
     });
 });
+
+// Image Slider Functionality
+function changeSlide(button, direction) {
+    try {
+        const slider = button.closest('.image-slider');
+        if (!slider) {
+            console.error('Slider not found');
+            return;
+        }
+        const slides = slider.querySelectorAll('.slide');
+        const indicators = slider.querySelectorAll('.indicator');
+        
+        if (slides.length === 0) {
+            console.error('No slides found');
+            return;
+        }
+    
+    let activeIndex = 0;
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+            activeIndex = index;
+        }
+    });
+    
+    // Remove active class from current slide and indicator
+    slides[activeIndex].classList.remove('active');
+    indicators[activeIndex].classList.remove('active');
+    
+    // Calculate new index
+    let newIndex = activeIndex + direction;
+    if (newIndex >= slides.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = slides.length - 1;
+    }
+    
+    // Add active class to new slide and indicator
+    slides[newIndex].classList.add('active');
+    if (indicators[newIndex]) {
+        indicators[newIndex].classList.add('active');
+    }
+    } catch (error) {
+        console.error('Slider error:', error);
+    }
+}
+
+function currentSlide(indicator, slideNumber) {
+    const slider = indicator.closest('.image-slider');
+    const slides = slider.querySelectorAll('.slide');
+    const indicators = slider.querySelectorAll('.indicator');
+    
+    // Remove active class from all slides and indicators
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(ind => ind.classList.remove('active'));
+    
+    // Add active class to selected slide and indicator
+    slides[slideNumber - 1].classList.add('active');
+    indicators[slideNumber - 1].classList.add('active');
+}
+
+// Auto-play slider (optional)
+function autoSlide() {
+    const sliders = document.querySelectorAll('.image-slider');
+    
+    sliders.forEach(slider => {
+        const nextBtn = slider.querySelector('.next-btn');
+        if (nextBtn) {
+            changeSlide(nextBtn, 1);
+        }
+    });
+}
+
+// Auto-advance slides every 5 seconds (optional - uncomment to enable)
+// setInterval(autoSlide, 5000);
