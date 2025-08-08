@@ -145,20 +145,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modal open function
     function openModal(event) {
         event.stopPropagation(); // Prevent slider controls from interfering
+        event.preventDefault();  // Prevent any default behavior
         console.log('Opening modal for image:', this.src); // Debug log
+        console.log('Window size:', window.innerWidth, 'x', window.innerHeight); // Debug window size
         
         // Set the image first
         modalImg.src = this.src;
         modalImg.alt = this.alt;
         
-        // Show modal with animation
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        // Force reset modal styles
+        modal.style.display = 'none';
+        modal.classList.remove('show');
         
-        // Trigger animation
-        setTimeout(() => {
-            modal.classList.add('show');
-        }, 10);
+        // Show modal with proper display
+        requestAnimationFrame(() => {
+            modal.style.setProperty('display', 'flex', 'important');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            
+            // Trigger animation after a short delay
+            setTimeout(() => {
+                modal.classList.add('show');
+                console.log('Modal should be visible now');
+            }, 50);
+        });
     }
 
     // Function to add modal functionality to images
@@ -180,9 +189,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal close function
     function closeModal() {
+        console.log('Closing modal');
         modal.classList.remove('show');
         setTimeout(() => {
-            modal.style.display = 'none';
+            modal.style.setProperty('display', 'none', 'important');
             document.body.style.overflow = 'auto'; // Restore scrolling
         }, 300);
     }
