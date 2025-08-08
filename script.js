@@ -146,8 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function openModal(event) {
         event.stopPropagation(); // Prevent slider controls from interfering
         event.preventDefault();  // Prevent any default behavior
-        console.log('Opening modal for image:', this.src); // Debug log
-        console.log('Window size:', window.innerWidth, 'x', window.innerHeight); // Debug window size
+        console.log('=== MODAL DEBUG ===');
+        console.log('Clicked image src:', this.src);
+        console.log('Clicked image alt:', this.alt);
+        console.log('Image element:', this);
+        console.log('Is in active slide:', this.closest('.slide.active') ? 'YES' : 'NO');
+        console.log('Window size:', window.innerWidth, 'x', window.innerHeight);
         
         // Set the image first
         modalImg.src = this.src;
@@ -172,17 +176,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to add modal functionality to images
     function addModalToImages() {
-        const researchImages = document.querySelectorAll('.research-img');
+        // Handle regular research images (not in sliders)
+        const regularImages = document.querySelectorAll('.research-img:not(.image-slider .research-img)');
         
-        researchImages.forEach(img => {
-            // Check if already has modal functionality
+        regularImages.forEach(img => {
             if (!img.dataset.modalReady) {
-                // Add click event to open modal
                 img.addEventListener('click', openModal);
-                // Add hover cursor
                 img.style.cursor = 'pointer';
-                // Mark as ready to prevent duplicate listeners
                 img.dataset.modalReady = 'true';
+            }
+        });
+        
+        // Handle slider images differently - only active ones
+        const sliders = document.querySelectorAll('.image-slider');
+        sliders.forEach(slider => {
+            // Add event delegation to the slider container
+            if (!slider.dataset.modalReady) {
+                slider.addEventListener('click', function(event) {
+                    // Only handle clicks on images in active slides
+                    if (event.target.matches('img.research-img') && 
+                        event.target.closest('.slide.active')) {
+                        openModal.call(event.target, event);
+                    }
+                });
+                slider.dataset.modalReady = 'true';
             }
         });
     }
