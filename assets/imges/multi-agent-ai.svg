@@ -1,0 +1,33 @@
+<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#aiGradient)"/>
+  
+  <!-- AI Agent Nodes -->
+  <circle cx="100" cy="60" r="20" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="200" cy="100" r="25" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="300" cy="60" r="20" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="150" cy="140" r="18" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle cx="250" cy="140" r="18" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <!-- Connection Lines -->
+  <line x1="100" y1="60" x2="200" y2="100" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <line x1="200" y1="100" x2="300" y2="60" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <line x1="200" y1="100" x2="150" y2="140" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <line x1="200" y1="100" x2="250" y2="140" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  
+  <!-- Labels -->
+  <text x="100" y="45" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white" font-weight="500">Agent 1</text>
+  <text x="200" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="white" font-weight="600">LLM Core</text>
+  <text x="300" y="45" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white" font-weight="500">Agent 2</text>
+  <text x="150" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white" font-weight="500">SimpleMind</text>
+  <text x="250" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white" font-weight="500">OpenManus</text>
+  
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" fill="white" font-weight="700">Multi-Agent AI System</text>
+  <text x="200" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="400">Medical Image Analysis Automation</text>
+</svg>
