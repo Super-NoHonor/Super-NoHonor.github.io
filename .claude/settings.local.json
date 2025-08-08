@@ -11,7 +11,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(git add:*)",
       "Bash(copy:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(git rm:*)"
     ],
     "deny": []
   }
