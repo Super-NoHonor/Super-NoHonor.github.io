@@ -881,20 +881,162 @@ a:hover {
   text-decoration: none;
 }
 
+/* Project Gallery Modal Styles */
+.project-modal {
+  display: none !important;
+  position: fixed !important;
+  z-index: 99999 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0,0,0,0.95) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.project-modal.show {
+  display: flex !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.project-modal-content {
+  background: white !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  width: 1200px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+}
+
+.project-modal-title {
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  color: #24292e !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+.project-gallery-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.gallery-main-image {
+  position: relative !important;
+  width: 100% !important;
+  height: 500px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f8f9fa !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.gallery-main-img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+}
+
+.gallery-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(0,0,0,0.7) !important;
+  color: white !important;
+  border: none !important;
+  padding: 15px 20px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  z-index: 10 !important;
+  transition: all 0.3s ease !important;
+}
+
+.gallery-btn:hover {
+  background: rgba(0,0,0,0.9) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.prev-gallery {
+  left: 20px !important;
+}
+
+.next-gallery {
+  right: 20px !important;
+}
+
+.gallery-thumbnails {
+  display: flex !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  padding: 10px 0 !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
+
+.gallery-thumbnail {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  border: 3px solid transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.gallery-thumbnail:hover,
+.gallery-thumbnail.active {
+  border-color: #0366d6 !important;
+  transform: scale(1.05) !important;
+}
+
 /* Large desktop specific modal styles */
 @media (min-width: 1200px) {
-  .modal {
-    display: none !important;
+  .project-modal-content {
+    width: 1400px !important;
   }
   
-  .modal.show {
-    display: flex !important;
-    opacity: 1 !important;
+  .gallery-main-image {
+    height: 600px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-modal-content {
+    padding: 15px !important;
+    margin: 10px !important;
   }
   
-  .modal-content {
-    max-width: 80% !important;
-    max-height: 80% !important;
+  .gallery-main-image {
+    height: 300px !important;
+  }
+  
+  .gallery-btn {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  .prev-gallery {
+    left: 10px !important;
+  }
+  
+  .next-gallery {
+    right: 10px !important;
+  }
+  
+  .gallery-thumbnail {
+    width: 60px !important;
+    height: 60px !important;
   }
 }
 

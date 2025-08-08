@@ -136,95 +136,203 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Image modal functionality
+// Project Gallery Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
+    const projectModal = document.getElementById('projectGallery');
+    const projectTitle = document.getElementById('projectTitle');
+    const galleryMainImage = document.getElementById('galleryMainImage');
+    const galleryThumbnails = document.getElementById('galleryThumbnails');
     const closeBtn = document.querySelector('.modal-close');
     
     // Debug: Check if modal elements exist
-    console.log('Modal elements check:');
-    console.log('Modal:', modal);
-    console.log('Modal Image:', modalImg);
+    console.log('Project Gallery elements check:');
+    console.log('Project Modal:', projectModal);
+    console.log('Gallery Main Image:', galleryMainImage);
+    console.log('Gallery Thumbnails:', galleryThumbnails);
     console.log('Close Button:', closeBtn);
     
-    if (!modal || !modalImg) {
-        console.error('Modal elements not found!');
+    if (!projectModal || !galleryMainImage) {
+        console.error('Project Gallery elements not found!');
         return;
     }
 
-    // Modal open function
-    function openModal(event) {
-        event.stopPropagation(); // Prevent slider controls from interfering
-        event.preventDefault();  // Prevent any default behavior
-        console.log('=== MODAL DEBUG ===');
-        console.log('Clicked image src:', this.src);
-        console.log('Clicked image alt:', this.alt);
-        console.log('Image element:', this);
-        console.log('Is in active slide:', this.closest('.slide.active') ? 'YES' : 'NO');
-        console.log('Window size:', window.innerWidth, 'x', window.innerHeight);
+    // Project image data
+    const projectData = {
+        'TRACE': {
+            title: 'TRACE: VLM Spatial Reasoning',
+            images: [
+                'assets/images/TRACE/TRACE_Main.png',
+                'assets/images/TRACE/TRACE_01.png',
+                'assets/images/TRACE/TRACE_02.png',
+                'assets/images/TRACE/TRACE_03.png',
+                'assets/images/TRACE/TRACE_04.png',
+                'assets/images/TRACE/TRACE_05.png'
+            ]
+        },
+        'Multi_agent': {
+            title: 'Multi-Agent AI System',
+            images: [
+                'assets/images/Multi_agent/Agentic_AI_main.png',
+                'assets/images/Multi_agent/Agentic_AI_01.png',
+                'assets/images/Multi_agent/Agentic_AI_02.png',
+                'assets/images/Multi_agent/Agentic_AI_03.png'
+            ]
+        },
+        'RobotTool': {
+            title: 'Robot Tool Image Detection',
+            images: [
+                'assets/images/RobotTool/RobotTool_Detection_main.jpg',
+                'assets/images/RobotTool/RobotTool_Detection_01.png'
+            ]
+        },
+        'Medical_image': {
+            title: 'Medical Image Segmentation',
+            images: [
+                'assets/images/Medical_image/Medical_segmentaion_main.jpg',
+                'assets/images/Medical_image/Medical_segmentaion_01.png',
+                'assets/images/Medical_image/Medical_segmentaion_02.png'
+            ]
+        }
+    };
+
+    let currentProject = '';
+    let currentImageIndex = 0;
+
+    // Project gallery open function
+    function openProjectGallery(projectKey, clickedImageSrc) {
+        console.log('=== PROJECT GALLERY DEBUG ===');
+        console.log('Opening project:', projectKey);
+        console.log('Clicked image:', clickedImageSrc);
         
-        // Set the image first
-        modalImg.src = this.src;
-        modalImg.alt = this.alt;
+        const project = projectData[projectKey];
+        if (!project) {
+            console.error('Project not found:', projectKey);
+            return;
+        }
         
-        // Force reset modal styles
-        modal.style.display = 'none';
-        modal.classList.remove('show');
+        currentProject = projectKey;
         
-        // Show modal with proper display
-        requestAnimationFrame(() => {
-            modal.style.setProperty('display', 'flex', 'important');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-            
-            // Trigger animation after a short delay
-            setTimeout(() => {
-                modal.classList.add('show');
-                console.log('Modal should be visible now');
-            }, 50);
+        // Find which image was clicked to start from that image
+        currentImageIndex = project.images.findIndex(img => img === clickedImageSrc);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        
+        // Set project title
+        projectTitle.textContent = project.title;
+        
+        // Create thumbnails
+        createThumbnails(project.images);
+        
+        // Show main image
+        showImage(currentImageIndex);
+        
+        // Show modal
+        projectModal.style.setProperty('display', 'flex', 'important');
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            projectModal.classList.add('show');
+        }, 10);
+    }
+
+    // Create thumbnail images
+    function createThumbnails(images) {
+        galleryThumbnails.innerHTML = '';
+        images.forEach((src, index) => {
+            const thumbnail = document.createElement('img');
+            thumbnail.src = src;
+            thumbnail.className = 'gallery-thumbnail';
+            thumbnail.onclick = () => showImage(index);
+            if (index === currentImageIndex) {
+                thumbnail.classList.add('active');
+            }
+            galleryThumbnails.appendChild(thumbnail);
         });
     }
 
-    // Function to add modal functionality to images
-    function addModalToImages() {
-        // Simple approach - add listeners to ALL research images
+    // Show specific image in gallery
+    function showImage(index) {
+        const project = projectData[currentProject];
+        if (!project || !project.images[index]) return;
+        
+        currentImageIndex = index;
+        galleryMainImage.src = project.images[index];
+        galleryMainImage.alt = `${project.title} - Image ${index + 1}`;
+        
+        // Update thumbnail active state
+        document.querySelectorAll('.gallery-thumbnail').forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+        });
+    }
+
+    // Function to add project gallery functionality to images
+    function addProjectGalleryToImages() {
         const allImages = document.querySelectorAll('.research-img');
         
         allImages.forEach(img => {
-            if (!img.dataset.modalReady) {
+            if (!img.dataset.galleryReady) {
                 img.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
                     console.log('Image clicked:', this.src);
                     
                     // For slider images, check if this image is in active slide
                     const slide = this.closest('.slide');
-                    if (slide) {
-                        if (!slide.classList.contains('active')) {
-                            console.log('Clicked image is not in active slide, ignoring');
-                            return;
-                        }
+                    if (slide && !slide.classList.contains('active')) {
+                        console.log('Clicked image is not in active slide, ignoring');
+                        return;
                     }
                     
-                    // Call modal open function
-                    openModal.call(this, event);
+                    // Determine which project this image belongs to
+                    const projectKey = getProjectKeyFromImagePath(this.src);
+                    console.log('Determined project:', projectKey);
+                    
+                    if (projectKey) {
+                        openProjectGallery(projectKey, this.src);
+                    }
                 });
                 img.style.cursor = 'pointer';
-                img.dataset.modalReady = 'true';
+                img.dataset.galleryReady = 'true';
             }
         });
     }
 
-    // Modal close function
-    function closeModal() {
-        console.log('Closing modal');
-        modal.classList.remove('show');
+    // Get project key from image path
+    function getProjectKeyFromImagePath(imagePath) {
+        if (imagePath.includes('TRACE/')) return 'TRACE';
+        if (imagePath.includes('Multi_agent/')) return 'Multi_agent';
+        if (imagePath.includes('RobotTool/')) return 'RobotTool';
+        if (imagePath.includes('Medical_image/')) return 'Medical_image';
+        return null;
+    }
+
+    // Close project gallery
+    function closeProjectGallery() {
+        console.log('Closing project gallery');
+        projectModal.classList.remove('show');
         setTimeout(() => {
-            modal.style.setProperty('display', 'none', 'important');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            projectModal.style.setProperty('display', 'none', 'important');
+            document.body.style.overflow = 'auto';
         }, 300);
     }
 
-    // Initialize modal for existing images
-    addModalToImages();
+    // Global functions for gallery navigation (called from HTML)
+    window.changeGalleryImage = function(direction) {
+        const project = projectData[currentProject];
+        if (!project) return;
+        
+        let newIndex = currentImageIndex + direction;
+        if (newIndex >= project.images.length) {
+            newIndex = 0;
+        } else if (newIndex < 0) {
+            newIndex = project.images.length - 1;
+        }
+        
+        showImage(newIndex);
+    };
+
+    // Initialize project gallery for existing images
+    addProjectGalleryToImages();
 
     // Re-initialize when new images are loaded (for dynamic content)
     const observer = new MutationObserver(function(mutations) {
@@ -244,8 +352,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         if (shouldReinit) {
-            console.log('New research images detected, reinitializing modal listeners');
-            addModalToImages();
+            console.log('New research images detected, reinitializing gallery listeners');
+            addProjectGalleryToImages();
         }
     });
 
@@ -254,22 +362,22 @@ document.addEventListener('DOMContentLoaded', function() {
         subtree: true
     });
 
-    // Close modal when clicking the X button
+    // Close gallery when clicking the X button
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeProjectGallery);
     }
 
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
+    // Close gallery when clicking outside the content
+    projectModal.addEventListener('click', function(e) {
+        if (e.target === projectModal) {
+            closeProjectGallery();
         }
     });
 
-    // Close modal with Escape key
+    // Close gallery with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeModal();
+        if (e.key === 'Escape' && projectModal.classList.contains('show')) {
+            closeProjectGallery();
         }
     });
 });
