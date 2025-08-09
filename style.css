@@ -237,22 +237,16 @@ a:hover {
 .research-visual {
   flex-shrink: 0;
   width: 500px;
-  position: relative !important;
-  z-index: 10 !important;
-  cursor: pointer !important;
 }
 
 .research-img {
-  width: 100% !important;
-  height: 350px !important;
-  object-fit: contain !important;
-  border-radius: 6px !important;
-  border: 1px solid #d0d7de !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  position: relative !important;
-  z-index: 80 !important;
-  background: #f8f9fa !important;
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #f8f9fa;
 }
 .research-img:hover {
   transform: scale(1.05);
@@ -262,14 +256,12 @@ a:hover {
 
 /* Image Slider Styles */
 .image-slider {
-  position: relative !important;
-  width: 100% !important;
-  height: 350px !important;
-  overflow: hidden !important;
-  border-radius: 6px !important;
-  border: 1px solid #d0d7de !important;
-  z-index: 5 !important;
-  cursor: pointer !important;
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
 }
 
 .slider-container {
@@ -300,19 +292,18 @@ a:hover {
 }
 
 .slider-btn {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background: rgba(0, 0, 0, 0.7) !important;
-  color: white !important;
-  border: none !important;
-  padding: 12px 16px !important;
-  border-radius: 50% !important;
-  cursor: pointer !important;
-  font-size: 16px !important;
-  z-index: 200 !important;
-  transition: all 0.3s ease !important;
-  pointer-events: auto !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10;
+  transition: all 0.3s ease;
 }
 
 .slider-btn:hover {
@@ -329,35 +320,31 @@ a:hover {
 }
 
 .slider-indicators {
-  position: absolute !important;
-  bottom: 15px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  display: flex !important;
-  gap: 8px !important;
-  z-index: 150 !important;
-  pointer-events: auto !important;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
 }
 
 .indicator {
-  width: 12px !important;
-  height: 12px !important;
-  border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.5) !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  z-index: 160 !important;
-  position: relative !important;
-  pointer-events: auto !important;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .indicator.active {
-  background: rgba(255, 255, 255, 0.9) !important;
-  transform: scale(1.2) !important;
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
 }
 
 .indicator:hover {
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Project tags styling for research section */
@@ -761,87 +748,6 @@ a:hover {
   color: #0366d6;
 }
 
-/* Force clicks to work on ALL screens - especially large ones */
-.research-visual,
-.research-visual *,
-.image-slider,
-.image-slider *,
-.research-img {
-  position: relative !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-}
-
-.research-visual {
-  z-index: 100 !important;
-}
-
-.image-slider {
-  z-index: 90 !important;
-}
-
-.research-img {
-  z-index: 80 !important;
-}
-
-/* Ensure clicks work on large screens */
-@media (min-width: 769px) {
-  .research-visual {
-    position: relative !important;
-    z-index: 100 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    display: block !important;
-  }
-  
-  .research-img {
-    position: relative !important;
-    z-index: 80 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    display: block !important;
-  }
-  
-  .image-slider {
-    position: relative !important;
-    z-index: 90 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    display: block !important;
-  }
-  
-  .slide {
-    position: relative !important;
-    z-index: 75 !important;
-    pointer-events: auto !important;
-  }
-  
-  .slide.active {
-    z-index: 85 !important;
-    pointer-events: auto !important;
-  }
-  
-  .slide.active img {
-    z-index: 85 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-  }
-  
-  .research-item {
-    position: relative !important;
-    z-index: 1 !important;
-  }
-  
-  .research-content {
-    position: relative !important;
-    z-index: 5 !important;
-    pointer-events: none !important;
-  }
-  
-  .research-content * {
-    pointer-events: auto !important;
-  }
-}
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -926,223 +832,6 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-/* Modal styles for enlarged images */
-.modal {
-  display: none !important;
-  position: fixed !important;
-  z-index: 99999 !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: rgba(0,0,0,0.9) !important;
-  cursor: pointer !important;
-  align-items: center !important;
-  justify-content: center !important;
-  opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
-  box-sizing: border-box !important;
-}
-
-.modal.show {
-  display: flex !important;
-  opacity: 1 !important;
-}
-
-.modal-content {
-  position: relative !important;
-  display: block !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: 85% !important;
-  max-height: 85% !important;
-  object-fit: contain !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
-  background: white !important;
-  padding: 8px !important;
-  cursor: default !important;
-  margin: auto !important;
-  transform: none !important;
-  top: auto !important;
-  left: auto !important;
-}
-
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #ffffff;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  color: #bbb;
-  text-decoration: none;
-}
-
-/* Project Gallery Modal Styles */
-.project-modal {
-  display: none !important;
-  position: fixed !important;
-  z-index: 99999 !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: rgba(0,0,0,0.95) !important;
-  opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
-}
-
-.project-modal.show {
-  display: flex !important;
-  opacity: 1 !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.project-modal-content {
-  background: white !important;
-  border-radius: 12px !important;
-  padding: 20px !important;
-  max-width: 95vw !important;
-  max-height: 95vh !important;
-  width: 1200px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
-}
-
-.project-modal-title {
-  text-align: center !important;
-  margin-bottom: 20px !important;
-  color: #24292e !important;
-  font-size: 24px !important;
-  font-weight: 600 !important;
-}
-
-.project-gallery-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px !important;
-}
-
-.gallery-main-image {
-  position: relative !important;
-  width: 100% !important;
-  height: 500px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: #f8f9fa !important;
-  border-radius: 8px !important;
-  overflow: hidden !important;
-}
-
-.gallery-main-img {
-  max-width: 100% !important;
-  max-height: 100% !important;
-  object-fit: contain !important;
-  border-radius: 8px !important;
-}
-
-.gallery-btn {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background: rgba(0,0,0,0.7) !important;
-  color: white !important;
-  border: none !important;
-  padding: 15px 20px !important;
-  border-radius: 50% !important;
-  cursor: pointer !important;
-  font-size: 18px !important;
-  z-index: 10 !important;
-  transition: all 0.3s ease !important;
-}
-
-.gallery-btn:hover {
-  background: rgba(0,0,0,0.9) !important;
-  transform: translateY(-50%) scale(1.1) !important;
-}
-
-.prev-gallery {
-  left: 20px !important;
-}
-
-.next-gallery {
-  right: 20px !important;
-}
-
-.gallery-thumbnails {
-  display: flex !important;
-  gap: 10px !important;
-  overflow-x: auto !important;
-  padding: 10px 0 !important;
-  justify-content: center !important;
-  flex-wrap: wrap !important;
-}
-
-.gallery-thumbnail {
-  width: 80px !important;
-  height: 80px !important;
-  object-fit: cover !important;
-  border-radius: 6px !important;
-  cursor: pointer !important;
-  border: 3px solid transparent !important;
-  transition: all 0.3s ease !important;
-}
-
-.gallery-thumbnail:hover,
-.gallery-thumbnail.active {
-  border-color: #0366d6 !important;
-  transform: scale(1.05) !important;
-}
-
-/* Large desktop specific modal styles */
-@media (min-width: 1200px) {
-  .project-modal-content {
-    width: 1400px !important;
-  }
-  
-  .gallery-main-image {
-    height: 600px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .project-modal-content {
-    padding: 15px !important;
-    margin: 10px !important;
-  }
-  
-  .gallery-main-image {
-    height: 300px !important;
-  }
-  
-  .gallery-btn {
-    padding: 10px 12px !important;
-    font-size: 14px !important;
-  }
-  
-  .prev-gallery {
-    left: 10px !important;
-  }
-  
-  .next-gallery {
-    right: 10px !important;
-  }
-  
-  .gallery-thumbnail {
-    width: 60px !important;
-    height: 60px !important;
-  }
-}
 
   .education-entry,
   .experience-entry {
