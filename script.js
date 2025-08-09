@@ -275,37 +275,39 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click listeners to images
         allImages.forEach((img, index) => {
             if (!img.dataset.galleryReady) {
-                // Add multiple event listeners for reliability
-                ['click', 'mousedown'].forEach(eventType => {
-                    img.addEventListener(eventType, function(event) {
-                        if (eventType === 'mousedown') return; // Only process click
-                        
-                        event.preventDefault();
-                        event.stopPropagation();
-                        
-                        console.log('=== IMAGE CLICKED ===');
-                        console.log('Image index:', index);
-                        console.log('Image src:', this.src);
-                        console.log('Window size:', window.innerWidth + 'x' + window.innerHeight);
-                        
-                        // For slider images, check if this image is in active slide
-                        const slide = this.closest('.slide');
-                        if (slide && !slide.classList.contains('active')) {
-                            console.log('Clicked image is not in active slide, ignoring');
-                            return;
-                        }
-                        
-                        // Determine which project this image belongs to
-                        const projectKey = getProjectKeyFromImagePath(this.src);
-                        console.log('Determined project:', projectKey);
-                        
-                        if (projectKey) {
+                img.addEventListener('click', function(event) {
+                    // Check if click came from slider button
+                    if (event.target.closest('.slider-btn') || 
+                        event.target.closest('.indicator')) {
+                        console.log('Slider control clicked, not opening gallery');
+                        return;
+                    }
+                    
+                    console.log('=== IMAGE CLICKED ===');
+                    console.log('Image index:', index);
+                    console.log('Image src:', this.src);
+                    console.log('Window size:', window.innerWidth + 'x' + window.innerHeight);
+                    
+                    // For slider images, check if this image is in active slide
+                    const slide = this.closest('.slide');
+                    if (slide && !slide.classList.contains('active')) {
+                        console.log('Clicked image is not in active slide, ignoring');
+                        return;
+                    }
+                    
+                    // Determine which project this image belongs to
+                    const projectKey = getProjectKeyFromImagePath(this.src);
+                    console.log('Determined project:', projectKey);
+                    
+                    if (projectKey) {
+                        // Small delay to ensure it's not a slider action
+                        setTimeout(() => {
                             openProjectGallery(projectKey, this.src);
-                        } else {
-                            console.error('Could not determine project for image:', this.src);
-                        }
-                    }, { passive: false });
-                });
+                        }, 100);
+                    } else {
+                        console.error('Could not determine project for image:', this.src);
+                    }
+                }, { passive: false });
                 
                 img.style.cursor = 'pointer';
                 img.style.zIndex = '80';
@@ -318,6 +320,15 @@ document.addEventListener('DOMContentLoaded', function() {
         visuals.forEach((visual, index) => {
             if (!visual.dataset.galleryReady) {
                 visual.addEventListener('click', function(event) {
+                    // Don't interfere with slider controls
+                    if (event.target.closest('.slider-btn') || 
+                        event.target.closest('.indicator') ||
+                        event.target.matches('.slider-btn') ||
+                        event.target.matches('.indicator')) {
+                        console.log('Slider control in visual container, ignoring');
+                        return;
+                    }
+                    
                     console.log('=== VISUAL CONTAINER CLICKED ===');
                     console.log('Visual index:', index);
                     
@@ -327,9 +338,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log('Found active image:', activeImage.src);
                         const projectKey = getProjectKeyFromImagePath(activeImage.src);
                         if (projectKey) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            openProjectGallery(projectKey, activeImage.src);
+                            // Small delay to ensure it's not a slider action
+                            setTimeout(() => {
+                                openProjectGallery(projectKey, activeImage.src);
+                            }, 150);
                         }
                     }
                 }, { passive: false });

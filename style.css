@@ -310,7 +310,7 @@ a:hover {
   border-radius: 50% !important;
   cursor: pointer !important;
   font-size: 16px !important;
-  z-index: 20 !important;
+  z-index: 200 !important;
   transition: all 0.3s ease !important;
   pointer-events: auto !important;
 }
@@ -329,31 +329,35 @@ a:hover {
 }
 
 .slider-indicators {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
+  position: absolute !important;
+  bottom: 15px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 8px !important;
+  z-index: 150 !important;
+  pointer-events: auto !important;
 }
 
 .indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  z-index: 160 !important;
+  position: relative !important;
+  pointer-events: auto !important;
 }
 
 .indicator.active {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.9) !important;
+  transform: scale(1.2) !important;
 }
 
 .indicator:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* Project tags styling for research section */
